@@ -1,0 +1,36 @@
+apt-get update
+apt install docker.io
+docker image
+docker pull httpd
+docker ps
+docker ps -a
+docker run -itd -p "8080:80" httpd
+docker run -itd --name "webserver" -p "3212:80" nginx
+docker run -itd --name "myjenkins" -p "8888:8080" jenkins/jenkins
+docker stop 34hgsvdh45uhcd
+docker rm 34hgsvdh45uhcd
+docker rm -f 34hgsvdh45uhcd
+docker rmi httpd
+docker exec -it 34hgsvdh45uhcd /bin/bash
+cat /etc/os-release
+docker top 34hgsvdh45uhcd            [running process]
+docker stats 34hgsvdh45uhcd          [CPU, RAM, Network]
+docker inspect 34hgsvdh45uhcd        [Config, IP]
+docker commit 34hgsvdh45uhcd myimage:v1
+docker build -t mypythonimage:v1 /root/usr/docfileloc
+-----------------------------------------------------------------------
+docker tag myimage bkbala3710/newimage:v1
+docker login
+docker push bkbala3710/newimage:v1
+docker pull bkbala3710/newimage:v1
+------------------------------------------
+docker save -o ./mydockerimage.tar myimage:v1
+scp -i ~/downloads/my-privatekey.pem ./mydockeriamge.tar ec2-user@3.110.12.45:/home/ec2-user/
+docker load -i mydockerimage.tar
+-----------------------------------------------------------------------
+Bind Mount
+docker run -itd -p "9000:80" -v /opt/www:usr/local/apache2/htdocs bkbala3710/newimage:v1
+Dedicated volume
+docker volume ls
+docker volume create my-vol
+
