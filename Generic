@@ -4,3 +4,5 @@ stress --cpu 2 --timeout 60
 
 2) sudo systemctl status nginx
 3) Dockerfile - Jenkinsfile =⇒ Case sensitive
+4) Buildspec.yml
+5) Appspec.yml
