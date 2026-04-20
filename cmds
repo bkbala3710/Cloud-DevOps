@@ -36,4 +36,64 @@ docker volume create my-vol
 docker run -itd -p 9090:80 --mount source=my-vol, target=/usr/local/apache2/htdocs bkbala3710/newimage:v1
 3. Temp mount - Temporary / Anonymous Volume
 docker run -itd -p 8085:80 -v /usr/local/apache2/htdocs bkbala3710/newimage:v1 
+-----------------------------------------------------------------------
+ENTRYPOINT → Defines the main command that always runs when the container starts.
+CMD → Provides default arguments (can be overridden at runtime).
+
+ 1. Using CMD alone:
+  FROM ubuntu
+  CMD ["echo", "Hello World"]
+  docker run myimage               # Hello world
+  docker run myimage echo Hi       # Hi
+
+  FROM ubuntu
+  CMD ["echo", "Hello World"]
+  CMD ["echo", "Welcome Earth"]
+  docker run myimage               # Welcome Earth
+  docker run myimage echo Hi       # Hi
+
+ 2. Using ENTRYPOINT alone:
+  FROM ubuntu
+  ENTRYPOINT ["echo"]
+  docker run myimage Hello         # Hello
+  docker run myimage Hi There      # Hi There
+
+  FROM ubuntu
+  ENTRYPOINT ["echo",”check”]
+  docker run myimage Hello         # check Hello
+  docker run myimage Hi There      # check Hi There
+
+ 3. ENTRYPOINT + CMD together:
+  FROM ubuntu
+  ENTRYPOINT ["echo"]
+  CMD ["Hello World"]
+  docker run myimage               # Hello World
+  docker run myimage Hi            # Hi
+
+Cleanup Commands:
+
+docker container prune     # Removes all stopped containers
+docker image prune         # Removes dangling (unused) images
+docker system prune        # Removes unused containers, networks, images, 
+                             cache
+
+Docker Networks:
+
+docker network create --driver bridge mynet   
+docker network ls         
+
+ 1. bridge → Containers talk via Docker’s virtual network, can expose 
+                    ports.
+
+    docker run -itd --name cont1 --network mynet -p 8080:80 httpd 
+  
+ 2. host → Container shares host network (better performance, less isolation).
+
+    docker run -itd --name cont2 --network host httpd
+
+ 3. none → No network access (used for secure/test cases).
+
+    docker run -itd --name cont3 --network none httpd
+
+
 
