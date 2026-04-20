@@ -156,3 +156,38 @@ USER is used to run the container with non-root privileges for security purposes
 
 RUN useradd -m appuser
 USER appuser
+
+
+------------------------------------------------------------------------------------------------
+FROM ubunto:latest
+LABEL Name = Bala
+LABEL ENV=Dev
+WORKDIR /app
+RUN apt-get update && apt install apache2 -y
+COPY ./index.html /usr/local/apache2/htdocs
+ENTRYPOINT [”Service”,”apache2”,”start”]
+EXPOSE 80
+------------------------------------------------------------------------------------------------
+FROM Openjdk:11
+WORKDIR /Opt
+ADD https://maven.org .
+COPY JavaCode
+RUN mvn clean install
+ADD https://tomcat.org .
+RUN CP ./app/war ./tomcat/webapps
+ENTRYPOINT [”sh”,”./tomcat/bin/startup.sh”]
+EXPOSE 8080
+------------------------------------------------------------------------------------------------
+FROM openjdk:11 AS BUILDER
+WORKDIR /opt
+ADD https://maven.org
+COPY JAVACODE
+RUN mvn clean install
+
+FROM Openjdk:11-alpine
+WORKDIR /Opt
+ADD https://tomcat.org .
+COPY —from=BUILDER /opt/war /opt/tomcat/webapps
+ENTRYPOINT[”sh”,”./tomcat/bin/startup.sh”]
+EXPOSE 8080
+------------------------------------------------------------------------------------------------
