@@ -33,4 +33,5 @@ docker run -itd -p "9000:80" -v /opt/www:usr/local/apache2/htdocs bkbala3710/new
 Dedicated volume
 docker volume ls
 docker volume create my-vol
+docker volume -itd 
 
