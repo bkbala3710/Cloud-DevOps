@@ -8,5 +8,6 @@ node(s) didn't match node selector
 taints and tolerations mismatch
 persistentvolumeclaim is not bound
 ---
-kubectl get nodes
-kubectl describe pod <pod-name>
+https://docs.google.com/document/d/10bEQRvdzM7Sqc4Wzr4HFtibujmggmfW6U4iio0KoGus/edit?tab=t.0
+
+https://chatgpt.com/share/69e7b766-e1e8-8320-a8d9-2d342f218e27
