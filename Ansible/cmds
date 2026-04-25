@@ -27,3 +27,8 @@ ansible-playbook -i inventory.txt myplaybook.yaml -v   # verbose
 ansible-playbook -i inventory.txt myplaybook.yaml -vv
 ansible-playbook -i inventory.txt myplaybook.yaml -vvv
 ansible-playbook -i inventory.txt myplaybook.yaml -vvvv
+7)
+pre_tasks:
+tasks:
+post_tasks:
+8)
