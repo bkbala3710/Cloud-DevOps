@@ -32,3 +32,13 @@ pre_tasks:
 tasks:
 post_tasks:
 8)
+block, rescue, always
+ignore_errors: yes
+9)
+vars_files
+
+https://www.notion.so/2-Ansible-2e5a0bd288088063945fe4b12ca58095
+
+10)
+notify & handlers
+
