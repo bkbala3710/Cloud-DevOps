@@ -21,3 +21,9 @@ ansible all -i slaves.txt -m copy -a "src=./slaves.txt dest=/tmp/slaves.txt" -b
 4) --syntax-check
 5) shell: /usr/bin/date
    register: abc
+6)
+ansible-playbook -i inventory.txt myplaybook.yaml      # normal
+ansible-playbook -i inventory.txt myplaybook.yaml -v   # verbose
+ansible-playbook -i inventory.txt myplaybook.yaml -vv
+ansible-playbook -i inventory.txt myplaybook.yaml -vvv
+ansible-playbook -i inventory.txt myplaybook.yaml -vvvv
