@@ -1,3 +1,14 @@
 https://github.com/Iam-mithran/LWM-Ansible
 
 https://www.linkedin.com/posts/bala3710_ansible-devops-automation-activity-7432483755384197121-qipZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8MozIBQNvp1MVCqErtCs--xWyg-4nTYAY
+
+ansible all -i slaves.txt -m ping
+ansible all -i slaves.txt -a "uname -a"
+ansible all -i slaves.txt -a "uptime"
+ansible greens -i slaves.txt -m ping
+ansible greens -i slaves.txt -m yum -a "name=httpd state=present"
+ansible greens -i slaves.txt -m service -a "name=httpd state=started"
+ansible greens -i slaves.txt -m yum -a "name=httpd state=present" -b
+ansible greens -i slaves.txt -m service -a "name=httpd state=started" -b
+ansible all -i slaves.txt -m user -a "name=greens password=greens123" -b
+ansible all -i slaves.txt -m copy -a "src=./slaves.txt dest=/tmp/slaves.txt" -b
