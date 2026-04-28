@@ -151,7 +151,7 @@ FROM node:$VERSION
 docker build --build-arg VERSION=18 -t myapp .
 
 ------------------------------------------------------------------------------------------------
-ARG - RUN time
+USER - RUN time
 ------------------------------------------------------------------------------------------------
 USER is used to run the container with non-root privileges for security purposes.
 
