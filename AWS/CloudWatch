@@ -31,7 +31,6 @@ CloudWatch metrics to trigger scaling policies,
 ensuring the application handled traffic automatically
 
 4. Custom Metrics
-
 Application-specific metrics
 # CPU Utilization
 # StatusCheckfailed_Instance
@@ -40,3 +39,7 @@ Application-specific metrics
 # NetworkIn /NetworkOut
 # Disk - EBS
 # TargetResponseTime (Latency)
+
+5. Dashboards - EC2 health, ALB request count, Error rates
+
+6. 
