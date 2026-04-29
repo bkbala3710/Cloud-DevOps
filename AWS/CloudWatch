@@ -43,3 +43,12 @@ Application-specific metrics
 5. Dashboards - EC2 health, ALB request count, Error rates
 
 6. 
+One time, users reported slow response. I checked CloudWatch metrics and saw CPU spikes. 
+Then I checked logs in CloudWatch Logs and found high DB latency. 
+We scaled the instances and optimized DB queries, which resolved the issue
+
+I set up CloudWatch alarms for high CPU and integrated with SNS. 
+Once, during peak traffic, we received alerts early and scaled the system before users were impacted.
+
+Overall, I used CloudWatch for monitoring infrastructure, analyzing logs for troubleshooting, 
+setting up alerts, and enabling auto scaling for high availability
