@@ -1,1 +1,39 @@
+1. CloudWatch Scenario (CPU spike 90%)
+Check Amazon CloudWatch metrics (CPUUtilization graph)
+Verify if spike is temporary or continuous
+Check CloudWatch Alarms (configured or not)
+SSH into EC2 → check processes (top, htop)
+Check application logs (high traffic / memory leak / cron job)
+Scale using Auto Scaling Group (add instances)
+If needed → optimize app / restart service
 
+# verify CloudWatch metrics and logs, 
+then identify the process causing spike, and scale using ASG if required.
+
+2. Jenkins Deployment Failure
+Check Jenkins console output logs
+Identify stage where failure happened (build/test/deploy)
+Verify:
+Git access / credentials
+Build errors (dependency issue)
+Server connectivity (SSH / permissions)
+Re-run failed stage (if pipeline supports)
+
+# Check disk space / environment variables
+Fix issue → trigger pipeline again
+
+3. S3 Access Issue
+Check Amazon S3 bucket policy
+Verify IAM role / user permissions
+Check if object is public or private
+Confirm Block Public Access settings
+Validate correct URL / endpoint
+If using CloudFront → check permissions there
+
+4. High Availability Architecture
+Deploy EC2 in multiple Availability Zones
+Use Application Load Balancer (ALB)
+Configure Auto Scaling Group
+Store data in RDS Multi-AZ
+Use Route 53 health checks
+Static content → S3 + CloudFront
