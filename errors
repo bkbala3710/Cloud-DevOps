@@ -2,6 +2,12 @@
 Pod keeps restarting again and again
 Wrong env variable, missing configuration or secret.
 
+Application crash
+Wrong image / config
+Environment variables
+Liveness/Readiness probes - timings issue slow start
+
+
 2. ImagePullBackoff
 Image not downloading
 Wrong image name, not authorize to ECR repo.
