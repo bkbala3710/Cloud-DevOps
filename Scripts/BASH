@@ -1,0 +1,17 @@
+1. Identify production issues without manually checking large log files.
+tail -f /var/log/app.log | grep "ERROR"
+
+2. Monitor disk usage and trigger alerts if it exceeds a threshold.
+df -h | grep "/dev/xvda1"
+
+3. Backup
+tar -czvf backup.tar.gz /data
+
+4. to check running processes and troubleshoot application issues.
+ps -ef | grep java
+
+5. Bash scripts in deployment pipelines to pull latest code, install dependencies, and restart services.
+#!/bin/bash
+git pull origin main
+npm install
+pm2 restart app
