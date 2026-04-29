@@ -26,10 +26,79 @@ terraform workspace new prod
 If mismatch → use terraform state commands
 
 6. what happens if a provider is getting upgraded? for example, you are in an AWS 7.5 provider, and that needs to be updated to 7.6. It's a major version. So how do you plan for this?
+First check release notes / breaking changes
+Update version in required_providers
+Run terraform init -upgrade
+Test in dev environment first
+Validate with terraform plan
+Then promote to QA → PROD
+Always avoid direct upgrade in production
+
 7. you have a S3 bucket, so that needs to be provided access. So you can do it in two ways. One is from IAM perspective, you can provide a IAM policy.
+IAM Policy (recommended)
+Attach policy to user/role
+Bucket Policy
+Used for cross-account or public access
+
 8. you have a Linux server, this has been deployed via Terraform like a month ago with the data volume through Terraform itself. So currently it is sizing with 500 GB. the application team has started using it and they wanted to extend the block system to 750 GB. so now you are going into the your own workspace in Terraform and reviewing the code and you are changing the additional disk volume size GB from 500 to 750 GB. Okay, if you run a Terraform plan and apply, what will happen here?
+Terraform will detect in-place update
+It will NOT recreate volume
+Only modify size from 500 → 750 GB
+No downtime usually (if supported volume type like gp2/gp3)
+After that, OS-level resize needed (filesystem extend)
+
 9. Diffrence between Private VPC and Public VPC?
+Public Subnet
+
+Has route to Internet Gateway
+Used for: Load balancer, bastion host
+
+Private Subnet
+
+No direct internet access
+Uses NAT Gateway for outbound
+Used for: EC2, RDS
+
 10. you have a RDS database. So there is a concept called Multi-AZ. and there is a concept called Read Replicas. So what is the difference between these two?
+Multi-AZ
+
+Used for High Availability
+Synchronous replication
+Automatic failover
+Same DB, standby instance
+
+Read Replica
+
+Used for Read Scaling
+Asynchronous replication
+No automatic failover (mostly manual)
+Used to reduce read load
+
 11. for example, there is an EC2 maintenance that's been called out for after two weeks, so there is a notification has been published on the AWS dashboard for a particular EC2 instance. So now that fault has a critical change window, so you don't want that set last deadline as per the notification, but you don't want to do that. So is there a way to postpone this?
+Stop & Start instance manually (migrate early)
+Use Auto Scaling / backup instance
+Create AMI → launch new instance
+👉 Basically, you can handle early, but not delay beyond limit
+
 12. what are the cost optimization initiatives you have taken in your current environment?
+Used Auto Scaling to reduce idle resources
+Converted to Reserved Instances / Savings Plans
+Used Spot instances for non-critical workloads
+Deleted unused:
+EBS volumes
+Snapshots
+Elastic IPs
+Used S3 lifecycle policies
+Right-sized EC2 instances using CloudWatch metrics
+
 13. Explain where the Jenkins have been used in your environment?
+Used for CI/CD pipeline automation
+Example flow:
+Code push → triggers Jenkins
+Build + Test
+Terraform apply for infra provisioning
+Deploy app to EC2 / containers
+Used for:
+Automating Terraform deployments
+Scheduling jobs (cron)
+Integrating with GitHub
