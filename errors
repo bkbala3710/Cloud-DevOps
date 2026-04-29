@@ -1,1 +1,65 @@
+1. Crashloopbackoff 
+Pod keeps restarting again and again
+Wrong env variable, missing configuration or secret.
 
+2. ImagePullBackoff
+Image not downloading
+Wrong image name, not authorize to ECR repo.
+
+3. Pending Pods
+Pods are not scheduling
+Taint and toleration mismatch, No resources(CPU/Memory)
+
+4. Service not reachable
+Selector & label - mismatch
+wrong port, security group
+
+5. PVC pending - storage issue
+No matching storage class, No match PV
+
+6. Ingress issue
+Ingress controller not installed
+
+7. RBAC - Forbidden
+Role, Rolebinding, clusterRole, clusterRolebinding - mismatch - wrong configurations
+=======================================================================================================================
+8. 
+1)
+E: 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗦𝟯 𝗯𝗮𝗰𝗸𝗲𝗻𝗱 𝟰𝟬𝟯 𝗙𝗼𝗿𝗯𝗶𝗱𝗱𝗲𝗻 
+R: The IAM role attached to the Jenkins EC2 instance did not have permissions to access the Terraform state file.
+S: Added the required IAM permissions
+
+2)
+E: 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝘄𝗲𝗯𝗵𝗼𝗼𝗸 𝗻𝗼𝘁 𝘁𝗿𝗶𝗴𝗴𝗲𝗿𝗶𝗻𝗴 𝗱𝘂𝗲 𝘁𝗼 𝗱𝘆𝗻𝗮𝗺𝗶𝗰 𝗜𝗣
+R: Jenkins EC2 instance had a dynamic public IP, which changed after instance restart.
+S: Allocated an Elastic IP, Attached it to the Jenkins EC2 instance, Updated the webhook URL in GitHub.
+
+3) 
+E: 𝗘𝗿𝗿𝗼𝗿 𝗮𝗰𝗾𝘂𝗶𝗿𝗶𝗻𝗴 𝘁𝗵𝗲 𝘀𝘁𝗮𝘁𝗲 𝗹𝗼𝗰𝗸
+R: Another Terraform process was running & Previous pipeline failed and left the lock.
+S: terraform force-unlock <LOCK_ID>
+
+4)
+E: 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗱𝗲𝗻𝗶𝗲𝗱 𝘄𝗵𝗶𝗹𝗲 𝗲𝘅𝗲𝗰𝘂𝘁𝗶𝗻𝗴 𝘀𝗰𝗿𝗶𝗽𝘁 
+R: Shell script does not have execute permission. 
+S: chmod +x devbackupfile.sh 
+
+5)
+E: 𝗙𝗮𝗶𝗹𝗲𝗱 𝘁𝗼 𝗰𝗹𝗼𝗻𝗲 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆
+R: Wrong Git credentials, SSH key not configured, token expired
+S: Add SSH key or Git credentials in Jenkins.
+
+6)
+E: 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗪𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲 𝗜𝘀𝘀𝘂𝗲 
+R: Old Terraform state or files causing pipeline failures. 
+S: Do cleanWs() or rm -rf * before checkout stage
+
+stages {
+ stage('Clean Workspace') {
+ steps {
+ cleanWs()
+ }
+ }
+ stage('Checkout')
+}
+=======================================================================================================================
