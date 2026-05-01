@@ -9,5 +9,7 @@ stress --cpu 2 --timeout 60
 4) Buildspec.yml - can be renamed and give appropriate to map it
 5) Appspec.yml - can't be renamed
 
+
 6) kubectl create -f pod.yaml
 7) kubectl apply -f pod.yaml
+https://www.linkedin.com/feed/update/urn:li:activity:7438202306334052353?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7438202306334052353%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
