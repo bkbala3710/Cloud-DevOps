@@ -1,0 +1,52 @@
+https://www.linkedin.com/feed/update/urn:li:activity:7442785432800743424?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7442785432800743424%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
+
+“An EC2-based application suddenly becomes unreachable, but the instance is still running. CPU looks normal. What do you do?”
+
+Most candidates jumped straight to restart the instance.
+That answer ends interviews.
+
+Here’s how a real DevOps engineer thinks.
+
+𝐒𝐭𝐞𝐩 𝟏: 𝐃𝐨𝐧’𝐭 𝐭𝐫𝐮𝐬𝐭 𝐭𝐡𝐞 “𝐫𝐮𝐧𝐧𝐢𝐧𝐠” 𝐬𝐭𝐚𝐭𝐞
+An EC2 instance being running doesn’t mean the app is healthy.
+ First check:
+• System Status Check
+• Instance Status Check
+If Instance Status Check fails, the OS or network stack is the issue — not AWS hardware.
+
+𝐒𝐭𝐞𝐩 𝟐: 𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐞 𝐧𝐞𝐭𝐰𝐨𝐫𝐤 𝐫𝐞𝐚𝐜𝐡𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+Before touching the server:
+• Security Group inbound rules
+• NACL rules
+• Route table association
+• Public IP or Elastic IP attached
+In many real outages, a recent SG change is the real culprit.
+
+𝐒𝐭𝐞𝐩 𝟑: 𝐒𝐒𝐇 𝐰𝐨𝐫𝐤𝐬, 𝐚𝐩𝐩 𝐝𝐨𝐞𝐬𝐧’𝐭
+If SSH is accessible but the app isn’t:
+• Check disk usage (df -h)
+• Check memory (free -m)
+• Check process health (systemctl status, ps, logs)
+In this case, logs showed:
+• Disk was 100% full due to unchecked application logs
+• App silently failed to write data
+
+𝐒𝐭𝐞𝐩 𝟒: 𝐅𝐢𝐱 + 𝐩𝐫𝐞𝐯𝐞𝐧𝐭 𝐫𝐞𝐜𝐮𝐫𝐫𝐞𝐧𝐜𝐞
+Immediate fix:
+• Clean logs
+• Restart service
+Long-term fix (this is what interviewers want):
+• Enable log rotation
+• Add CloudWatch disk alarms
+• Create an AMI backup
+• Use Auto Scaling + Load Balancer for resilience
+
+𝐖𝐡𝐲 𝐭𝐡𝐢𝐬 𝐚𝐧𝐬𝐰𝐞𝐫 𝐦𝐚𝐭𝐭𝐞𝐫𝐬
+This isn’t about EC2 commands.
+ It’s about thinking in systems, not servers.
+That’s the difference between:
+• Someone who uses AWS
+• Someone who can handle a 20+ LPA DevOps role
+
+Never rush to restart.
+First understand why the system failed and how you’ll prevent it next time.
