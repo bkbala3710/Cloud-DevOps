@@ -1,1 +1,3 @@
-
+From root account - create IAM user
+1. Go to IAM - create user - name & password - IAM full access & IAM User change password - created
+URL, Username, initalpassword - downloaded csv file - done.
