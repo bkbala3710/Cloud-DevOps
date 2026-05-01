@@ -13,3 +13,49 @@ stress --cpu 2 --timeout 60
 6) kubectl create -f pod.yaml
 7) kubectl apply -f pod.yaml
 https://www.linkedin.com/feed/update/urn:li:activity:7438202306334052353?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7438202306334052353%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
+
+8)
+Public key and private key are part of asymmetric encryption, where:
+
+Two keys are generated together
+One is shared (public key)
+One is kept secret (private key)
+🔑 Public Key
+Shared openly (can be distributed to anyone)
+Used to:
+Encrypt data
+Verify digital signatures
+Cannot be used to decrypt what it encrypts
+
+👉 Example:
+If someone wants to send you secure data, they encrypt it using your public key
+
+🔒 Private Key
+Kept strictly confidential
+Used to:
+Decrypt data
+Create digital signatures
+Must never be exposed
+
+👉 Example:
+You decrypt the received data using your private key
+
+🔁 How It Works (Simple Flow)
+Sender gets your public key
+Encrypts message using public key
+Message travels securely over internet
+You decrypt using your private key
+📌 Interview One-Liner
+
+“Public key is used for encryption and sharing, while private key is used for decryption
+and must be kept secret. Together they enable secure communication using asymmetric encryption.”
+
+🔥 Real-Time DevOps / AWS Usage
+SSH Login (EC2)
+Public key stored in EC2
+Private key used from your system
+SSL/TLS (HTTPS)
+Public key in certificate
+Private key on server
+IAM / KMS / Secrets
+Used for encryption/decryption of sensitive data
