@@ -3,3 +3,5 @@ From root account - create IAM user
 URL, Username, initalpassword - downloaded csv file - done.
 
 IAM user login - change password when signing in - done - BAT0000
+
+BAT0000 is a IAM user have IAM full access & IAM User change password permission
