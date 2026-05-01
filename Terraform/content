@@ -11,3 +11,9 @@ Drift - https://www.linkedin.com/posts/bala3710_terraform-aws-devops-activity-73
 Precedence - https://www.linkedin.com/posts/bala3710_devops-terraformtips-cloudengineer-activity-7395188796436242432-qXXd?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8MozIBQNvp1MVCqErtCs--xWyg-4nTYAY
 
 file loss - https://www.linkedin.com/posts/bala3710_terraform-devops-aws-activity-7370892890044051456-FeyW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8MozIBQNvp1MVCqErtCs--xWyg-4nTYAY
+
+Flow:
+1. Launch template
+2. Target group
+3. ALB -> Map to target group
+4. ASG -> Map to launch template & target group
