@@ -17,3 +17,7 @@ Flow:
 2. Target group
 3. ALB -> Map to target group
 4. ASG -> Map to launch template & target group
+
+1. ALB 
+2. listener map to ALB
+3. Target group map to listener
