@@ -6,5 +6,5 @@ IAM user login - change password when signing in - done - BAT0000
 
 BAT0000 is a IAM user have IAM full access & IAM User change password permission & adminitratoraccess
 ==========================================================================================================
-Login as BAT0000 - create IAM user SACHIN - give s3 full access - enable console access - change password when sign in - done
+Login as BAT0000 - create IAM user SACHIN - give s3 full access & IAM User change password - enable console access - change password when sign in - done
 also can create access key and secret access key
