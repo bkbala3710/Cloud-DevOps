@@ -1,1 +1,142 @@
+HCL - https://www.linkedin.com/feed/update/urn:li:activity:7440067620239847424?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7440067620239847424%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
 
+🐳 Docker
+1. Main Docker Network Types
+Bridge → Default, containers communicate within same host
+Host → Shares host network (no isolation)
+None → No networking
+Overlay → Multi-host communication (Swarm/K8s)
+Macvlan → Assigns real IP from network
+
+2. What is Dockerfile?
+Text file with instructions to build Docker image
+Defines app environment (OS, dependencies, commands)
+
+3. Why do we use Dockerfile?
+Automates image creation
+Ensures consistency across environments
+Version control for infrastructure
+
+4. Dockerfile Instructions
+FROM → Base image
+RUN → Execute commands
+COPY / ADD → Add files
+WORKDIR → Set working dir
+CMD → Default command
+ENTRYPOINT → Main execution
+EXPOSE → Port
+ENV → Environment variables
+
+Terraform
+5. Execute script even if resource not created
+Use null_resource + provisioner
+Or use local-exec
+
+6. Terraform State File
+Stores infrastructure state (terraform.tfstate)
+Maps config → real resources
+Required for tracking & updates
+
+7. terraform block & required_providers
+terraform {} → Global settings
+required_providers → Defines provider source & version
+
+8. remote-exec in Terraform
+Runs commands inside remote server (EC2)
+Requires SSH connection
+
+9. null_resource
+Dummy resource
+Used to run scripts/provisioners
+Not tied to actual infra
+
+Kubernetes
+10. Worker Node keeps restarting
+Check:
+kubelet logs
+CPU/Memory issues
+Disk full
+Network issues
+Restart kubelet / fix resource constraints
+
+11. Store tokens/secrets/passwords
+Kubernetes Secret
+
+12. Readiness Probe
+Checks if pod is ready to serve traffic
+If fails → removed from service
+
+13. Liveness vs Readiness
+Liveness → Restart container if failed
+Readiness → Control traffic routing
+
+14. Storage in Pod
+Volumes
+emptyDir
+hostPath
+persistentVolumeClaim (PVC)
+
+15. ReplicaSet manifest
+Ensures desired number of identical pod replicas in all worker nodes
+Uses spec.replicas + selector
+
+16. NodePort range
+30000 – 32767
+
+17. ClusterIP vs NodePort
+ClusterIP → Internal access only
+NodePort → External access via node IP + port
+
+18. Default namespaces
+default
+kube-system
+kube-public
+kube-node-lease
+
+🔐 Networking & Security
+19. SSL termination basis
+Done at Load Balancer / Proxy
+Based on:
+Performance optimization
+Offload encryption work
+
+20. SSL termination
+Decrypt HTTPS at LB
+Send traffic to backend as HTTP
+
+21. ALB vs NLB
+ALB
+Layer 7 (HTTP/HTTPS)
+Path-based routing
+NLB
+Layer 4 (TCP/UDP)
+High performance, low latency
+
+22. Amazon Route 53
+Managed DNS service
+Domain registration + routing
+Supports health checks
+
+23. Elastic IP per account
+Default limit: 5 per region
+Can request increase
+
+24. Security Groups
+Instance-level firewall
+Stateful
+Allow rules only
+Deny by default
+
+25. NACL
+Subnet-level firewall
+Stateless
+Allow + Deny rules
+Default NACL - allow by default
+Custom NACL - deny by default
+Lower rank goes higher precedence
+
+26. User Data in EC2
+Script that runs at instance launch
+Used for:
+Install software
+Configure servers
