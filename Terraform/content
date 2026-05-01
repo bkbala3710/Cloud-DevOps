@@ -12,14 +12,27 @@ Precedence - https://www.linkedin.com/posts/bala3710_devops-terraformtips-cloude
 
 file loss - https://www.linkedin.com/posts/bala3710_terraform-devops-aws-activity-7370892890044051456-FeyW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8MozIBQNvp1MVCqErtCs--xWyg-4nTYAY
 
-Flow:
+Flow Manual:
 1. Launch template
 2. Target group
 3. ALB -> Map to target group
 4. ASG -> Map to launch template & target group
 
+IaC Terraform:
 1. Launch template
 2. ALB                                            - subnet location
 3. listener map to ALB & target group
 4. Target group 
 5. ASG map to launch template & target group      - subnet location
+
+Routing
+1. IGW
+2. Public route table
+3. Public route table map to IGW
+4. Public subnet map to public route table
+
+5. Elastic IP
+6. NAT map to elastic IP                          - public subnet location
+7. Private route table
+8. Private route table map to NAT
+9. Private subnet map to private route table
