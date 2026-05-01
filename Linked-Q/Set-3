@@ -48,3 +48,94 @@ In AWS:
 ALB → L7 → Application - HTTP/HTTPS
 NLB → L4 → Transport   - TCP/UDP
 GLB → L3 → Network     
+
+9. EC2 running but not accessible
+
+Check:
+
+Security Group (port open?)
+NACL rules
+Internet Gateway attached?
+Public IP assigned?
+Route table (0.0.0.0/0 → IGW)
+Application listening on correct port
+
+10. VPC components to verify
+Route Tables
+Internet Gateway
+NAT Gateway (if private subnet)
+Security Groups
+NACL
+
+1. High CPU in CloudWatch
+Check:
+Running processes (top, htop)
+Logs (app logs, system logs)
+Traffic spike?
+Memory usage (swap?)
+Actions:
+Scale out (ASG)
+Optimize app
+
+🔁 CI/CD & Project
+
+12. Roles & Responsibilities
+Infra provisioning (Terraform)
+CI/CD pipeline setup
+Monitoring (CloudWatch)
+Deployment automation
+Troubleshooting
+
+13. CI/CD responsibility
+Yes — created and maintained pipelines
+
+14. Pipeline flow
+Code commit → Git
+Build → Jenkins
+Test → Unit tests
+Build Docker image
+Push to ECR
+Deploy to EC2 / Kubernetes
+
+15. Security in pipeline
+IAM roles (least privilege)
+Secrets in AWS Secrets Manager
+No hardcoding credentials
+Image scanning (optional)
+
+16. Branching strategy
+GitFlow / simple:
+main → production
+dev → development
+feature branches
+
+🐳 Docker & ☸️ Kubernetes
+17. Multi-stage Docker
+Uses multiple FROM
+Reduces image size
+Keeps only required artifacts
+
+18. Push image to ECR
+
+Steps:
+
+Authenticate:
+aws ecr get-login-password
+Build image
+Tag image
+Push to ECR
+
+19. CrashLoopBackOff debug
+Check:
+kubectl logs <pod>
+kubectl describe pod
+Causes:
+App crash
+Wrong config
+Port issue
+Fix and redeploy
+
+20. HPA (Horizontal Pod Autoscaler)
+Automatically scales pods
+Based on CPU/memory
+Improves availability & performance
