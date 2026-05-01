@@ -1,0 +1,109 @@
+IBM - https://www.linkedin.com/feed/update/urn:li:activity:7447162026327674880?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7447162026327674880%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
+
+☸️ 2. Kubernetes Architecture
+Master (Control Plane):
+API Server → entry point
+Scheduler → assigns pods
+Controller Manager → maintains state
+etcd → stores cluster data
+Worker Nodes:
+Kubelet → communicates with master
+Container runtime (Docker/containerd)
+Kube-proxy → networking
+
+📈 3. Auto-scaling in Kubernetes
+Yes — used HPA
+Scales pods based on CPU/memory metrics
+Improves performance during traffic spikes
+
+⚖️ 4. HPA vs VPA
+HPA → Scales number of pods
+VPA → Adjusts CPU/memory of pod
+HPA = horizontal scaling
+VPA = vertical scaling
+
+💥 5. When a Pod crashes
+Kubernetes restarts container automatically
+Based on restart policy
+If continuous failure → CrashLoopBackOff
+Logs help identify issue
+
+🔍 6. Explore applications in cluster
+kubectl get pods
+kubectl get svc
+kubectl describe pod
+kubectl logs
+Use labels/selectors
+
+⚙️ 7. Terraform Modules
+Reusable blocks of code
+Example: VPC module, EC2 module
+Improves maintainability and reusability
+
+🧱 8. Sample Terraform EC2 Module
+# modules/ec2/main.tf
+resource "aws_instance" "this" {
+  ami           = var.ami
+  instance_type = var.instance_type
+
+  tags = {
+    Name = var.name
+  }
+}
+
+# modules/ec2/variables.tf
+variable "ami" {}
+variable "instance_type" {}
+variable "name" {}
+
+# root main.tf
+module "ec2" {
+  source        = "./modules/ec2"
+  ami           = "ami-123456"
+  instance_type = "t2.micro"
+  name          = "my-instance"
+}
+
+9. Instance Types
+Types:
+General → t2, t3
+Compute → c5
+Memory → r5
+Used: t2.micro, t3.medium
+
+🔁 10. Pipeline Stages
+Code → Git push
+Build → Jenkins
+Test → Unit test
+Build Docker image
+Push → ECR
+Deploy → Kubernetes
+
+11. Simple Dockerfile
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["npm", "start"]
+Explanation:
+
+FROM → base image
+WORKDIR → set path
+COPY → copy code
+RUN → install deps
+CMD → start app
+
+12. Reduce Docker Image Size
+Use Alpine images
+Multi-stage build
+Remove unnecessary files
+Use .dockerignore
+Minimize layers
+
+☁️ 13. ALB vs NLB
+ALB
+Layer 7 (HTTP/HTTPS)
+Path-based routing
+NLB
+Layer 4 (TCP/UDP)
+High performance, low latency
