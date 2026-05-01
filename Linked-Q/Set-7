@@ -133,3 +133,120 @@ Kubernetes Secrets
 AWS Secrets Manager + IAM roles
 Avoid hardcoding
 Encrypt at rest
+
+----------
+☸️ Kubernetes Core
+1. Current Kubernetes version
+
+👉 “I’ve worked with Kubernetes versions around 1.26–1.29 (EKS-managed clusters).”
+
+2. Cluster upgrade
+For EKS:
+Upgrade control plane (AWS console/CLI)
+Upgrade node groups (rolling update)
+Update kubelet/kubectl
+Ensure:
+Backup
+Check compatibility
+
+3. How Ingress routes traffic
+Ingress → rules (host/path)
+Ingress Controller (ALB/Nginx) processes rules
+Routes → Service → Pod
+
+4. Pod creation when replica fails
+Deployment ensures desired replicas
+If pod fails → controller detects mismatch
+New pod is created automatically
+
+Configure HPA
+Based on metrics (CPU/memory)
+kubectl autoscale deployment myapp --cpu-percent=70 --min=2 --max=10
+Requires metrics server
+
+☁️ AWS + Networking
+6. NLB (Network Load Balancer)
+Layer 4 (TCP/UDP)
+High performance, low latency
+Use for:
+Real-time apps
+Static IP
+
+7. Expose K8s services externally
+NodePort
+LoadBalancer
+Ingress
+
+🔄 Deep Scenario (Important Question)
+8. Pod failure handling (end-to-end flow)
+Step 1: kubelet
+Detects pod failure (health check / crash)
+Step 2: API Server
+Status updated
+Step 3: Controller Manager
+Sees replica count mismatch
+Step 4: Scheduler
+Schedules new pod on available node
+Step 5: New Pod
+Created → running
+
+👉 Old pod is terminated/replaced
+
+9. Ingress → traffic to pods (pods are dynamic)
+Ingress → Service (stable endpoint)
+Service uses:
+Label selectors
+Endpoints list
+Traffic always goes to active pods via service
+
+10. Problem solved by Ingress
+Avoid multiple LoadBalancers
+Centralized routing (host/path-based)
+TLS termination
+
+11. If Ingress exists, why NLB?
+Ingress needs external entry point
+NLB/ALB sits in front of Ingress controller
+
+12. AWS Load Balancers
+ALB → Layer 7
+NLB → Layer 4
+CLB → legacy
+
+13. Why ALB if NLB can handle traffic?
+ALB supports:
+Path-based routing
+Host-based routing
+HTTP/HTTPS features
+NLB → only TCP/UDP
+
+🔐 EC2 Access
+14. Lost PEM key
+Options:
+Use Session Manager
+Detach volume → attach to another EC2 → update SSH keys
+Recreate instance
+
+15. Enable Session Manager
+Attach IAM role:
+AmazonSSMManagedInstanceCore
+Install SSM agent (usually pre-installed)
+Ensure:
+Internet/NAT access
+Connect via AWS console
+
+🚀 EKS Deployment Scenario
+16. Deploy GitHub app to EKS (resources needed)
+Deployment
+Define pods, replicas
+Service
+Expose pods internally
+Ingress
+External access
+ConfigMap
+App config
+Secret
+Sensitive data
+Optional:
+HPA
+PVC
