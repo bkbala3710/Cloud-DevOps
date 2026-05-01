@@ -1,0 +1,15 @@
+HTTPS Flow with CloudFront (SSL Termination)
+User enters abc.com in browser → request is routed to Amazon CloudFront
+CloudFront is associated with the domain abc.com, and the SSL certificate is issued via AWS Certificate Manager, which is trusted by Certificate Authorities.
+Browser validates the certificate:
+Checks if it is issued by a trusted CA
+Verifies domain name (abc.com)
+Once trusted, SSL/TLS handshake begins:
+CloudFront sends its public key (from certificate)
+Browser uses this public key to establish a secure session (generates session key)
+Now communication becomes encrypted (HTTPS):
+Browser sends encrypted request to CloudFront
+At CloudFront:
+SSL termination happens (HTTPS → HTTP)
+Request is decrypted at edge location
+CloudFront forwards the request to backend (e.g., Application Load Balancer)
