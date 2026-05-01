@@ -1,2 +1,50 @@
 Wibro - https://www.linkedin.com/feed/update/urn:li:activity:7445439909315686400?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7445439909315686400%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
 
+⚙️ Terraform & Infrastructure
+1. Experience in Terraform
+Yes — used Terraform to provision AWS infra
+Worked with EC2, VPC, ALB, Auto Scaling, S3, RDS, IAM
+
+2. Services created using Terraform
+VPC (subnets, IGW, NAT)
+EC2 + Auto Scaling
+ALB
+S3 buckets
+RDS
+IAM roles & policies
+
+3. Terraform State File
+File (terraform.tfstate) that stores current infra state
+Maps config → real resources
+Used for tracking & updates
+
+4. Where do you store state file?
+Remote backend (best practice):
+S3 bucket
+With DynamoDB (state locking)
+
+5. provider.tf
+Defines provider (AWS, Azure etc.)
+Includes region, version
+
+6. variable.tf
+Declares input variables
+Makes code reusable & dynamic
+
+7. terraform plan shows deletion
+DO NOT apply immediately
+Steps:
+Check code changes
+Verify state mismatch
+Run terraform refresh
+Confirm if deletion is intended
+Take backup of state
+
+☁️ AWS & Networking
+8. Application Gateway vs Load Balancer
+Application Gateway (ALB) → Layer 7 (HTTP/HTTPS, path routing)
+Load Balancer (general) → Distributes traffic
+In AWS:
+ALB → L7 → Application - HTTP/HTTPS
+NLB → L4 → Transport   - TCP/UDP
+GLB → L3 → Network     
