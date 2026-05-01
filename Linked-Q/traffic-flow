@@ -1,1 +1,56 @@
+1. DNS Resolution – Amazon Route 53
+User enters the domain → Route 53 resolves it to the CloudFront distribution endpoint.
+2. Edge Layer – Amazon CloudFront (SSL Termination)
+Request reaches nearest edge location
+SSL certificate (from AWS Certificate Manager) is validated
 
+SSL/TLS handshake happens:
+CloudFront provides public key
+Browser establishes secure session (session key)
+Communication becomes encrypted (HTTPS)
+CloudFront decrypts request (SSL termination)
+
+Checks cache:
+If cached → response returned instantly
+If not → forwards request to backend
+
+3. External Load Balancer – Application Load Balancer
+Receives request from CloudFront
+Performs Layer 7 routing:
+Path-based (/api, /login)
+Host-based routing
+Runs health checks
+
+Routes traffic to Web Tier
+
+4. Web Tier (Frontend Layer)
+EC2 instances running Nginx/Apache
+Responsibilities:
+Handle incoming HTTP requests
+Serve static content
+Forward dynamic requests
+
+5. Internal Load Balancer – Application Load Balancer
+Private (not internet-facing)
+Routes traffic from Web Tier to App Tier
+
+Ensures secure internal communication
+
+6. Application Tier (Monolithic Logic)
+Single codebase handling:
+Authentication
+Business logic
+API processing
+
+Scales horizontally using Auto Scaling
+
+🗄️ 7. Database Tier – Amazon RDS
+Runs in private subnet
+Access restricted to App Tier only
+Supports Multi-AZ for high availability
+
+8. Response Flow
+
+DB → App → Internal ALB → Web → ALB → CloudFront → User
+
+📌 CloudFront may cache response for faster future access
