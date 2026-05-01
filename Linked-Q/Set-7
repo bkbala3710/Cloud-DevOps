@@ -1,0 +1,135 @@
+ SquareOps - https://www.linkedin.com/feed/update/urn:li:activity:7455455249315799040?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7455455249315799040%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
+             https://www.linkedin.com/posts/neerjara_devops-interview-squareops-kubernetes-share-7455455699897065472-qfXB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8MozIBQNvp1MVCqErtCs--xWyg-4nTYAY
+
+2. Typical day in my role
+Monitor applications (CloudWatch / Grafana)
+Handle deployments via Jenkins pipelines
+Troubleshoot issues (pods, EC2, networking)
+Work on Terraform changes
+Collaborate with dev team for releases
+
+🔁 CI/CD & Build Optimization
+3. Reduced build time
+Parallelized pipeline stages
+Used caching (dependencies, Docker layers)
+Optimized Dockerfile
+Reduced unnecessary steps
+
+4. Build still 1.5 hr → further optimize
+Incremental builds
+Use pre-built base images
+Split microservices builds
+Use distributed build agents
+Profile slow steps
+
+5. Ephemeral agents benefits
+Clean environment (no conflicts)
+Better security
+Auto-scale agents
+Cost efficient
+
+Handling:
+
+Create via Jenkins + Kubernetes plugin
+Connect via JNLP
+Auto-destroy after job completion
+
+6. Artifact management
+Store in S3 / Nexus / Artifactory
+Versioning enabled
+Tag with build number
+Used in deployment stage
+
+7. Repo migration (Bitbucket → GitHub)
+Clone repo locally
+Change remote URL
+Push to new repo
+Migrate pipelines & secrets
+
+
+8. Divergent branch
+Local & remote branches differ
+Fix:
+git pull --rebase
+Resolve conflicts
+
+9. Branching strategy
+GitFlow:
+main → prod
+dev → integration
+feature branches
+
+🐳 Docker
+10. Multi-stage build stages
+Build stage → compile code
+Test stage → run tests
+Final stage → minimal runtime image
+
+11. Reduce image size
+Use slim images
+Multi-stage builds
+Remove unnecessary packages
+.dockerignore
+
+⚙️ Terraform
+12. Handle state drift
+Run terraform plan → detect drift
+Use terraform refresh
+Reconcile changes
+
+Prevent:
+
+Restrict manual changes (IAM)
+Use only Terraform for infra
+Enable drift detection
+
+13. Multiple cloud providers
+Define multiple providers:
+provider "aws" {}
+provider "azurerm" {}
+Use alias if needed
+Separate modules per provider
+
+📊 Logging, Monitoring & Observability
+14. Logs → Prometheus vs Splunk
+Prometheus → metrics (CPU, memory)
+Splunk/ELK → logs (app/system logs)
+
+15. Log isolation & cardinality
+Use labels carefully
+Avoid dynamic labels (user_id etc.)
+Separate namespaces/log streams
+
+16. Prometheus integration
+Expose /metrics endpoint
+Use Prometheus scrape config
+Deploy via Helm
+
+17. Observability usage
+Monitor latency, errors
+Identify bottlenecks
+Set alerts (CPU, memory)
+
+18. EFK flow
+Fluentd → collects logs
+Elasticsearch → stores logs
+Kibana → visualization
+
+19. Logs in Kubernetes
+Use Fluentd / Fluent Bit
+Centralized logging (ELK)
+Pod logs via kubectl logs
+
+🔐 Security & Secrets
+20. CyberArk Conjur vs AWS Secrets Manager (EKS)
+Prefer AWS Secrets Manager
+Native AWS integration
+IAM-based access
+Easier for EKS
+
+21. Secrets in Kubernetes
+Use:
+Kubernetes Secrets
+AWS Secrets Manager + IAM roles
+Avoid hardcoding
+Encrypt at rest
