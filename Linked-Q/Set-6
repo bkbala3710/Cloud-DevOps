@@ -1,0 +1,162 @@
+Unknown-https://www.linkedin.com/feed/update/urn:li:activity:7454511662528692226?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7454511662528692226%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
+
+☁️ Cloud & AWS
+1. Highly available architecture
+Use Multi-AZ deployment
+ALB + Auto Scaling Group
+Stateless app (store sessions in Redis/DB)
+RDS Multi-AZ
+S3 for static content
+
+2. Increase EBS without downtime
+Modify volume in AWS (increase size)
+SSH into instance
+Run:
+lsblk
+growpart
+resize2fs (Linux)
+No reboot required
+
+3. Multi-AZ vs Read Replica
+Multi-AZ
+High availability
+Synchronous replication
+Failover support
+Read Replica
+Read scaling
+Asynchronous replication
+No automatic failover
+
+4. S3 cross-account transfer
+Use:
+Bucket policy + IAM role
+OR S3 replication
+OR aws s3 sync with access
+
+📈 Scaling & Performance
+5. Handle high traffic
+Enable Auto Scaling
+Use ALB
+Cache (CloudFront / Redis)
+Optimize DB
+
+6. Auto Scaling
+Min → minimum instances
+Desired → current running
+Max → upper limit
+
+7. Multi-region HA design
+Deploy app in multiple regions
+Use Route 53 (failover/latency routing)
+Data replication (RDS / DynamoDB global)
+
+🌐 Networking & Infra
+8. Public vs Private subnet
+Public
+Route to Internet Gateway
+Private
+No direct IGW route
+Uses NAT Gateway
+
+9. Docker networking
+Bridge → default
+Host → shares host network
+Overlay → multi-host
+Containers communicate via IP/port
+
+10. CMD vs ENTRYPOINT
+CMD → default command (can override)
+ENTRYPOINT → fixed main command
+
+☸️ Kubernetes
+11. Security in EKS
+IAM roles for service accounts
+RBAC
+Network policies
+Secrets management
+Security groups
+
+12. Kubernetes Services
+Exposes pods
+Types:
+ClusterIP
+NodePort
+LoadBalancer
+
+13. CrashLoopBackOff
+Pod repeatedly crashing
+Debug:
+kubectl logs
+kubectl describe pod
+
+14. Pod Pending
+Check:
+Node resources
+Scheduler issues
+PVC binding
+Taints/tolerations
+
+15. Rolling update vs Rollback
+Rolling → gradual update
+Rollback → revert to previous version
+
+16. Blue-Green vs Canary
+Blue-Green → switch all traffic
+Canary → gradual traffic shift
+
+17. Read-only access (RBAC)
+Create Role with read permissions
+Bind using RoleBinding
+
+🔧 DevOps Tools
+18. Grafana usage
+Visualization tool
+Integrated with Prometheus
+Used for monitoring dashboards
+
+19. Kubernetes tools used
+EKS (managed)
+kubectl
+Helm
+
+20. Terraform usage
+Write infra as code
+Use modules
+Manage state in S3
+Automate infra creation
+
+21. 3-tier architecture (IaC)
+Web → ALB + EC2
+App → EC2/containers
+DB → RDS
+VPC + subnets + security groups
+
+🐧 Linux
+22. Check open ports
+netstat -tuln
+ss -tuln
+
+23. Find large files
+find / -type f -size +100M
+
+24. Files modified last 30 mins
+find / -mmin -30
+
+25. Disk space troubleshooting
+df -h → usage
+du -sh * → folder size
+Delete logs/temp files
+
+🐳 Docker
+26. Multi-stage build
+Multiple FROM
+Reduce image size
+Keep only final artifacts
+
+27. Avoid Alpine sometimes
+Issues:
+Compatibility (glibc missing)
+Debugging difficulty
+Alternatives:
+Debian slim
+Ubuntu
