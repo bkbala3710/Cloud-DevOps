@@ -8,3 +8,48 @@ BAT0000 is a IAM user have IAM full access & IAM User change password permission
 ==========================================================================================================
 Login as BAT0000 - create IAM user SACHIN - give s3 full access & IAM User change password - enable console access - change password when sign in - done
 also can create access key and secret access key
+
+
+
+Group
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    
+    {
+      "Sid": "ListAllBuckets",
+      "Effect": "Allow",
+      "Action": "s3:ListAllMyBuckets",
+      "Resource": "*"
+    },
+
+    {
+      "Sid": "AccessSpecificBucket",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::gpideveloper"
+    },
+    {
+      "Sid": "AccessObjectsInSpecificBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::gpideveloper/*"
+    },
+
+    {
+      "Sid": "DenyOtherBucketsAccess",
+      "Effect": "Deny",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "NotResource": "arn:aws:s3:::gpideveloper/*"
+    }
+  ]
+}
