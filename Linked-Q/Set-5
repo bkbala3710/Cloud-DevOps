@@ -1,0 +1,85 @@
+Unknown - https://www.linkedin.com/feed/update/urn:li:activity:7454534168241278976?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7454534168241278976%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
+
+☁️ AWS + Docker
+1. Ways to host Docker containers in AWS
+Amazon ECS (Fargate / EC2) → Most common
+EKS (Kubernetes) → Advanced orchestration
+AWS Lambda (container image) → Serverless
+EC2 (manual Docker setup) → Full control
+
+2. Docker container on Lambda
+Yes
+Steps:
+Build Docker image
+Push to ECR
+Create Lambda using container image
+Useful for serverless container execution
+
+3. Max container size (Lambda)
+10 GB (container image)
+
+4. Max memory in Lambda
+10,240 MB (10 GB)
+
+5. Lambda Layer
+Reusable package (libraries, dependencies)
+Shared across multiple Lambda functions
+
+🔐 Security
+6. Security scans
+Code scan → SonarQube (SAST)
+Dependency scan → OWASP
+Container scan → Trivy / ECR scan
+Infra scan → Terraform scan (Checkov)
+
+7. Vulnerability
+Weakness in system/software that can be exploited
+
+8. Real-time vulnerabilities seen
+Hardcoded credentials
+Outdated packages
+Open ports (security risk)
+Misconfigured IAM roles
+
+9. Cognitive Complexity
+Measures how hard code is to understand
+High complexity = difficult maintenance
+
+🔁 CI/CD (Jenkins)
+10. Pipeline example
+Git commit triggers pipeline
+Stages:
+Build
+Test
+Docker build
+Push to ECR
+Deploy to Kubernetes
+
+⚙️ Terraform
+11. Terraform state file
+Stores infra state
+Tracks resources
+Used for updates (terraform.tfstate)
+
+12. Infra size managed
+Example answer:
+~50–100 EC2 instances
+Kubernetes cluster with 20–30 pods
+Multiple services (ALB, RDS, S3)
+
+13. Infra management approach
+Both:
+Client-specific infra (isolated environments)
+Sometimes centralized shared services
+
+14. Deployment strategies
+Rolling deployment
+Blue-Green
+Canary
+
+15. Blue-Green Deployment
+Two environments:
+Blue → current
+Green → new
+Switch traffic after validation
+Zero downtime, easy rollback
