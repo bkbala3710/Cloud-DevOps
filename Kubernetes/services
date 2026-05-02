@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-cip-service
+spec:
+  type: ClusterIP
+  selector:
+    colour: pink
+  ports:
+    - port: 9999
+      targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+  labels:
+    colour: pink
+spec:
+  containers:
+  - name: cont1
+    image: nginx
+    ports:
+    - containerPort: 80
+===========================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-np-service
+spec:
+  type: NodePort
+  selector:
+    youtube: lwm
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30002
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkins-pod
+  labels:
+    youtube: lwm
+spec:
+  containers:
+  - name: cont1
+    image: jenkins/jenkins
+    ports:
+    - containerPort: 8080
+===========================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+spec:
+  type: LoadBalancer
+  selector:
+    colour: blue
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lwm-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      colour: blue
+  template:
+    metadata:
+      labels:
+        colour: blue
+    spec:
+      containers:
+      - name: cont1
+        image: httpd
