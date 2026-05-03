@@ -20,9 +20,9 @@ Flow Manual:
 
 IaC Terraform:
 1. Launch template
-2. ALB                                            - subnet location
-3. listener map to ALB & target group
-4. Target group 
+2.  Target group 
+3. ALB                                            - subnet location
+4. listener map to ALB & target group 
 5. ASG map to launch template & target group      - subnet location
 
 Routing
