@@ -38,3 +38,14 @@ kubectl set image deployment/lwm-deployment cont1=httpd
 kubectl get deployment lwm-deployment -o yaml > newfile.yaml
 
 aws eks update-kubeconfig --name <cluster-name>
+
+A namespace provides a mechanism for isolating groups of resources within a single cluster, 
+acting as a virtual subdivision or logical room for organizing workloads.
+
+kubectl get namespace
+kubectl create namespace dev
+
+default
+kube-node-leave
+kube-public
+kube-system
