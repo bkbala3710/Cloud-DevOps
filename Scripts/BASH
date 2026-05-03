@@ -5,7 +5,7 @@ tail -f /var/log/app.log | grep "ERROR"
 df -h | grep "/dev/xvda1"
 
 3. Backup
-tar -czvf backup.tar.gz /data
+tar -czf backup.tar.gz /data
 
 3.1 Restore
 tar -xzf backup/backup_29042025_pre_daily_backup.tar.gz -c /home/ec2user/restore
@@ -25,3 +25,5 @@ free -m        - RAM usage
 ps -ef         - Process status PID
 netstat -tulnp - network ports & services
 chmod          - change file permission
+
+6. find /release/may/log -type f -mtime +21 -delete
