@@ -27,3 +27,9 @@ netstat -tulnp - network ports & services
 chmod          - change file permission
 
 6. find /release/may/log -type f -mtime +21 -delete
+
+7. mkdir foldername - folder creation
+   rmdir foldername - empty deletion
+   rm -r foldername - delete a file contains folder
+
+
