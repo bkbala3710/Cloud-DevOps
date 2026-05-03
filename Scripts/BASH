@@ -30,10 +30,11 @@ chmod          - change file permission
 
 7. mkdir foldername - folder creation
    rmdir foldername - empty deletion
-   rm -r foldername - delete a file contains folder
+   rm -rf /path/to/folder
    rm -rf /path/to/folder/* - delete files inside the folder
+   rm -ri /path/to/folder/* - delete files inside the folder - The -i option asks for confirmation before each deletion.
 
-The -i option asks for confirmation before each deletion.
+
 
 
 
