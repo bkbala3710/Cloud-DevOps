@@ -49,3 +49,6 @@ default
 kube-node-leave
 kube-public
 kube-system
+
+kubectl get configmap aws-auth -n kube-system
+kubectl edit configmap aws-auth -n kube-system
