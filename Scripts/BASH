@@ -31,5 +31,7 @@ chmod          - change file permission
 7. mkdir foldername - folder creation
    rmdir foldername - empty deletion
    rm -r foldername - delete a file contains folder
+   rm -rf /path/to/folder/* - delete files inside the folder
+
 
 
