@@ -33,5 +33,7 @@ chmod          - change file permission
    rm -r foldername - delete a file contains folder
    rm -rf /path/to/folder/* - delete files inside the folder
 
+The -i option asks for confirmation before each deletion.
+
 
 
